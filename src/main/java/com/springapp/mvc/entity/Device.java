@@ -2,7 +2,7 @@ package com.springapp.mvc.entity;
 
 import javax.persistence.*;
 
-@Entity(name = "deviceManager")
+@Entity(name = "device")
 public class Device
 {
     @Id
@@ -11,6 +11,9 @@ public class Device
 
     @Column (name = "name")
     private String name;
+
+    @Column (name = "platform")
+    private String platform;
 
     public Long getId() {
         return id;

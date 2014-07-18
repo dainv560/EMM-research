@@ -28,29 +28,40 @@
 
             <c:if test="${!empty devices}">
                 <h3>Devices</h3>
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" align="center">
                     <thead>
                         <tr>
-                            <th>Index</th>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>&nbsp;</th>
+                            <th>Device</th>
+                            <!--<th>&nbsp;</th>-->
+                            <th>Command</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${devices}" var="device" varStatus="i">
-                            <tr>
-                                <td>${i.index+1}</td>
-                                <td>${device.id}</td>
-                                <td>${device.name}</td>
-                                <td>
-                                    <form:form action="delete/${device.id}" method="post"><input type="submit"
-                                                                                               class="btn btn-danger btn-mini"
-                                                                                               value="Delete"/>
-                                    </form:form>
-                                </td>
-                            </tr>
-                        </c:forEach>
+                        <tr>
+                            <td>
+                                <select class="form-control">
+                                <c:forEach items="${devices}" var="device" varStatus="i">
+                                    <option id=${device.id}>${device.name}</option>
+                                </c:forEach>
+                                </select>
+                            </td>
+                            <!--<td align="center">
+                                <form:form action="delete/${device.id}" method="post"><input type="submit"
+                                                                                           class="btn btn-danger btn-mini"
+                                                                                           value="Delete"/>
+                                </form:form>
+                            </td> -->
+                            <td>
+                                <select class="form-control">
+                                    <option id="command1">command 1</option>
+                                    <option id="command2">command 2</option>
+                                    <option id="command3">command 3</option>
+                                    <option id="command4">command 4</option>
+                                    <option id="command5">command 5</option>
+                                </select>
+                            </td>
+
+                        </tr>
                     </tbody>
                 </table>
             </c:if>
