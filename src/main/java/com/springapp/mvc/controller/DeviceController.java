@@ -22,7 +22,7 @@ public class DeviceController
     @Autowired
     private DeviceService deviceService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/device", method = RequestMethod.GET)
     public String listDevices(ModelMap model)
     {
         model.addAttribute("device", new Device());
@@ -49,17 +49,17 @@ public class DeviceController
         return deviceArray.toString();
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/addDevice", method = RequestMethod.POST)
     public String addDevice(@ModelAttribute("device") Device device, BindingResult result)
     {
         deviceService.save(device);
-        return "redirect:/";
+        return "redirect:/device";
     }
 
-    @RequestMapping("/delete/{deviceId}")
+    @RequestMapping("/deleteDevice/{deviceId}")
     public String deleteDevice(@PathVariable("deviceId") Long deviceId)
     {
         deviceService.delete(deviceService.findOne(deviceId));
-        return "redirect:/";
+        return "redirect:/device";
     }
 }

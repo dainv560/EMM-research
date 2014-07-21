@@ -11,6 +11,7 @@ import javax.persistence.Id;
 public class DeviceModel {
     private Long id;
     private String name;
+    private String platform;
 
     public Long getId() {
         return id;
@@ -27,4 +28,13 @@ public class DeviceModel {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
 }

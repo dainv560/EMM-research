@@ -18,52 +18,53 @@
     <body>
         <div class="container">
             <h1>Devices</h1>
-            <form:form method="post" action="add" commandName="device" role="form">
+            <form:form method="post" action="addDevice" commandName="device" role="form">
                 <div class="form-group">
                     <form:label path="name">Name:</form:label>
                     <form:input path="name" class="form-control" placeholder="Name"/>
+                    <form:label path="platform">Platform:</form:label>
+                    <form:input path="platform" class="form-control" placeholder="Platform"/>
                 </div>
                 <button type="submit" class="btn btn-default">Add Device</button>
             </form:form>
 
             <c:if test="${!empty devices}">
                 <h3>Devices</h3>
-                <table class="table table-bordered table-striped" align="center">
-                    <thead>
-                        <tr>
-                            <th>Device</th>
-                            <!--<th>&nbsp;</th>-->
-                            <th>Command</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <select class="form-control">
-                                <c:forEach items="${devices}" var="device" varStatus="i">
-                                    <option id=${device.id}>${device.name}</option>
-                                </c:forEach>
-                                </select>
-                            </td>
-                            <!--<td align="center">
-                                <form:form action="delete/${device.id}" method="post"><input type="submit"
-                                                                                           class="btn btn-danger btn-mini"
-                                                                                           value="Delete"/>
-                                </form:form>
-                            </td> -->
-                            <td>
-                                <select class="form-control">
-                                    <option id="command1">command 1</option>
-                                    <option id="command2">command 2</option>
-                                    <option id="command3">command 3</option>
-                                    <option id="command4">command 4</option>
-                                    <option id="command5">command 5</option>
-                                </select>
-                            </td>
+                    <table class="table table-bordered table-striped" align="center">
+                        <thead>
+                            <tr>
+                                <th>Device</th>
+                                <th>Platform</th>
+                                <th>&nbsp;</th>
 
-                        </tr>
-                    </tbody>
-                </table>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${devices}" var="device" varStatus="i">
+                                <tr>
+                                    <td>
+                                        <a href="/history/${device.id}"><h4>${device.name}</h4></a>
+                                    </td>
+                                    <td>
+                                        <h4>${device.platform}</h4>
+                                    </td>
+                                    <td align="center">
+                                        <form:form action="deleteDevice/${device.id}" method="post"><input type="submit"
+                                                                                                     class="btn btn-danger btn-mini"
+                                                                                                     value="Delete"/>
+                                        </form:form>
+                                    </td>
+
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                <form:form action="progress" method="get">
+                    <button  class="btn btn-default">Go to Sending Page</button>
+                </form:form>
+                <form:form action="command" method="get">
+                    <button  class="btn btn-default">Adding Command</button>
+                </form:form>
             </c:if>
         </div>
     </body>

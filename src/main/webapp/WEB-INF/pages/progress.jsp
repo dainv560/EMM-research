@@ -5,7 +5,11 @@
   Time: 2:11 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!doctype html>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,35 +21,60 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/dist/css/bootstrap-responsive.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <p align="center">
-        <h2>Send Command</h2>
-    </p>
+<div class="container">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Device</th>
-                <th>Command</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>
-                    <c:forEach items="${devices}" var="device" varStatus="i">
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </c:forEach>
-                </th>
-                <th></th>
-            </tr>
-        </tbody>
-    </table>
+    <c:if test="${!empty devices}">
+        <c:if test="${!empty commands}">
 
+        <h3>Sending Command</h3>
+        <form:form method="post" commandName="history">
+            <table class="table table-bordered table-striped" align="center">
+                <thead>
+                <tr>
+                    <th>Device</th>
+                    <!--<th>&nbsp;</th>-->
+                    <th>Command</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <form:select path="device_id" class="form-control" id="device">
+                            <c:forEach items="${devices}" var="device" varStatus="i">
+                                <option  value=${device.id} id=${device.id}>${device.name}</option>
+                            </c:forEach>
+                        </form:select>
+                    </td>
+                    <td>
+                        <form:select path="command_id" class="form-control" id="command">
+                            <c:forEach items="${commands}" var="command" varStatus="i">
+                                <option value=${command.id} id=${command.id}>${command.name}</option>
+                            </c:forEach>
+                        </form:select>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+            <button align="right" type="submit" class="btn btn-primary">SEND</button>
+
+        </form:form>
+        </c:if>
+    </c:if>
+    <c:if test="${empty devices}">
+        <p align="center">
+            <h3>No Device</h3>
+        </p>
+    </c:if>
+    <c:if test="${empty commands}">
+        <p align="center">
+        <h3>No Command</h3>
+        </p>
+    </c:if>
+
+</div>
 </body>
 </html>

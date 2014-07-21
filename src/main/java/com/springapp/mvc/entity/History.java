@@ -15,11 +15,11 @@ public class History {
 
     @ManyToOne
     @JoinColumn(name="device_id")
-    Device device;
+    private Device device;
 
     @ManyToOne
     @JoinColumn(name="command_id")
-    Command command;
+    private Command command;
 
     @Column(name = "date")
     private Date date;

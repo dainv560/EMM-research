@@ -30,6 +30,7 @@ public class DeviceService {
 
             deviceModel.setId(device.getId());
             deviceModel.setName(device.getName());
+            deviceModel.setPlatform(device.getPlatform());
 
             deviceModelList.add(deviceModel);
         }

@@ -30,4 +30,12 @@ public class Device
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
 }
