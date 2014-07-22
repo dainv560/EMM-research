@@ -1,8 +1,7 @@
 package com.springapp.mvc.service;
 
-import com.springapp.mvc.dao.CommandRepository;
-import com.springapp.mvc.dao.HistoryRepository;
-import com.springapp.mvc.entity.Command;
+import com.springapp.mvc.dao.DeviceDAO;
+import com.springapp.mvc.dao.HistoryDAO;
 import com.springapp.mvc.entity.History;
 import com.springapp.mvc.model.HistoryModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,14 @@ import java.util.List;
 @Service
 public class HistoryService {
     @Autowired
-    HistoryRepository historyRepository;
+    HistoryDAO historyDAO;
+
+    @Autowired
+    DeviceDAO deviceDAO;
 
     public List<HistoryModel> findAll()
     {
-        List<History> historyList = historyRepository.findAll();
+        List<History> historyList = historyDAO.findAll();
 
         List<HistoryModel> historyModelList = new ArrayList<HistoryModel>();
 
@@ -43,37 +45,22 @@ public class HistoryService {
 
     public List<History> findWithId(long device_id)
     {
-        List<History> historyList = historyRepository.findAll();
-
         List<History> historyModelList = new ArrayList<History>();
 
-        for(History history : historyList)
-        {
-            if (history.getDevice().getId()==device_id) {
-                History historyModel = new History();
-
-                historyModel.setId(history.getId());
-                historyModel.setDevice(history.getDevice());
-                historyModel.setCommand(history.getCommand());
-                historyModel.setDate(history.getDate());
-                historyModel.setSuccess(history.getSuccess());
-
-                historyModelList.add(historyModel);
-            }
-        }
+        historyModelList = historyDAO.findByDevice(deviceDAO.findOne(device_id));
 
         return  historyModelList;
     }
 
     public void save(History history){
-        historyRepository.save(history);
+        historyDAO.save(history);
     }
 
     public void delete(History history){
-        historyRepository.delete(history);
+        historyDAO.delete(history);
     }
 
     public History findOne(Long historyId){
-        return historyRepository.findOne(historyId);
+        return historyDAO.findOne(historyId);
     }
 }

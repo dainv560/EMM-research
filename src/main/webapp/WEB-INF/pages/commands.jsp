@@ -25,7 +25,7 @@
 <body>
 <div class="container">
     <h1>Commands</h1>
-    <form:form method="post" action="addCommand" commandName="command" role="form">
+    <form:form method="post" class="form-inline" action="addCommand" commandName="command" role="form">
         <div class="form-group">
             <form:label path="name">Name:</form:label>
             <form:input path="name" class="form-control" placeholder="Name"/>

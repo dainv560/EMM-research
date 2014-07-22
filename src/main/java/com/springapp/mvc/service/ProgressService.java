@@ -1,7 +1,7 @@
 package com.springapp.mvc.service;
 
-import com.springapp.mvc.dao.CommandRepository;
-import com.springapp.mvc.dao.DeviceRepository;
+import com.springapp.mvc.dao.CommandDAO;
+import com.springapp.mvc.dao.DeviceDAO;
 import com.springapp.mvc.entity.Command;
 import com.springapp.mvc.entity.Device;
 import com.springapp.mvc.model.CommandModel;
@@ -19,12 +19,12 @@ import java.util.List;
 public class ProgressService {
 
     @Autowired
-    DeviceRepository deviceRepository;
-    CommandRepository commandRepository;
+    DeviceDAO deviceDAO;
+    CommandDAO commandDAO;
 
     public List<DeviceModel> findAllDevice()
     {
-        List<Device> deviceList = deviceRepository.findAll();
+        List<Device> deviceList = deviceDAO.findAll();
 
         List<DeviceModel> deviceModelList = new ArrayList<DeviceModel>();
 
@@ -43,7 +43,7 @@ public class ProgressService {
 
     public List<CommandModel> findAllCommand()
     {
-        List<Command> commandList = commandRepository.findAll();
+        List<Command> commandList = commandDAO.findAll();
 
         List<CommandModel> commandModelList = new ArrayList<CommandModel>();
 

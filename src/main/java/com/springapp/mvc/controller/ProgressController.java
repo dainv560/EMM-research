@@ -68,6 +68,6 @@ public class ProgressController {
 
         historyService.save(newHistory);
 
-        return "SendingSuccess";
+        return "redirect:/history/" + history.getDevice_id();
     }
 }

@@ -1,6 +1,6 @@
 package com.springapp.mvc.service;
 
-import com.springapp.mvc.dao.DeviceRepository;
+import com.springapp.mvc.dao.DeviceDAO;
 import com.springapp.mvc.entity.Device;
 import com.springapp.mvc.model.DeviceModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ import java.util.List;
 public class DeviceService {
 
     @Autowired
-    DeviceRepository deviceRepository;
+    DeviceDAO deviceDAO;
 
     public List<DeviceModel> findAll()
     {
-        List<Device> deviceList = deviceRepository.findAll();
+        List<Device> deviceList = deviceDAO.findAll();
 
         List<DeviceModel> deviceModelList = new ArrayList<DeviceModel>();
 
@@ -39,14 +39,14 @@ public class DeviceService {
     }
 
     public void save(Device device){
-        deviceRepository.save(device);
+        deviceDAO.save(device);
     }
 
     public void delete(Device device){
-        deviceRepository.delete(device);
+        deviceDAO.delete(device);
     }
 
     public Device findOne(Long deviceId){
-        return deviceRepository.findOne(deviceId);
+        return deviceDAO.findOne(deviceId);
     }
 }

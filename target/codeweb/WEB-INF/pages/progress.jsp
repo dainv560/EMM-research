@@ -62,16 +62,28 @@
             <button align="right" type="submit" class="btn btn-primary">SEND</button>
 
         </form:form>
+        <p >
+            <form:form class="form-inline" role="form" method="get">
+                <a href="/device" role="button" class="btn btn-default" >Adding Device</a>
+                <a href="/command" role="button" class="btn btn-default" >Adding Command</a>
+            </form:form>
+        </p>
         </c:if>
     </c:if>
     <c:if test="${empty devices}">
         <p align="center">
             <h3>No Device</h3>
+            <form:form action="device" method="get">
+                <button align="right" type="submit" class="btn btn-default">Adding Device</button>
+            </form:form>
         </p>
     </c:if>
     <c:if test="${empty commands}">
         <p align="center">
-        <h3>No Command</h3>
+            <h3>No Command</h3>
+            <form:form action="command" method="get">
+                <button align="left" type="submit" class="btn btn-default">Adding Command</button>
+            </form:form>
         </p>
     </c:if>
 

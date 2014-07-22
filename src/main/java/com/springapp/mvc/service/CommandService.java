@@ -1,6 +1,6 @@
 package com.springapp.mvc.service;
 
-import com.springapp.mvc.dao.CommandRepository;
+import com.springapp.mvc.dao.CommandDAO;
 import com.springapp.mvc.entity.Command;
 import com.springapp.mvc.model.CommandModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ import java.util.List;
 public class CommandService {
 
     @Autowired
-    CommandRepository commandRepository;
+    CommandDAO commandDAO;
 
     public List<CommandModel> findAll()
     {
-        List<Command> commandList = commandRepository.findAll();
+        List<Command> commandList = commandDAO.findAll();
 
         List<CommandModel> commandModelList = new ArrayList<CommandModel>();
 
@@ -38,14 +38,14 @@ public class CommandService {
     }
 
     public void save(Command command){
-        commandRepository.save(command);
+        commandDAO.save(command);
     }
 
     public void delete(Command command){
-        commandRepository.delete(command);
+        commandDAO.delete(command);
     }
 
     public Command findOne(Long commandId){
-        return commandRepository.findOne(commandId);
+        return commandDAO.findOne(commandId);
     }
 }

@@ -18,7 +18,7 @@
     <body>
         <div class="container">
             <h1>Devices</h1>
-            <form:form method="post" action="addDevice" commandName="device" role="form">
+            <form:form method="post" class="form-inline" action="addDevice" commandName="device" role="form">
                 <div class="form-group">
                     <form:label path="name">Name:</form:label>
                     <form:input path="name" class="form-control" placeholder="Name"/>
@@ -59,11 +59,9 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                <form:form action="progress" method="get">
-                    <button  class="btn btn-default">Go to Sending Page</button>
-                </form:form>
-                <form:form action="command" method="get">
-                    <button  class="btn btn-default">Adding Command</button>
+                <form:form class="form-inline" role="form" method="get">
+                    <a href="/progress" role="button" class="btn btn-default" >Go to Sending Page</a>
+                    <a href="/command" role="button" class="btn btn-default" >Adding Command</a>
                 </form:form>
             </c:if>
         </div>
