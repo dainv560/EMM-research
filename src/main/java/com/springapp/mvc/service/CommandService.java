@@ -5,6 +5,7 @@ import com.springapp.mvc.entity.Command;
 import com.springapp.mvc.model.CommandModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * Created by dainv on 7/21/2014.
  */
+@Transactional(rollbackFor = Exception.class)
 @Service
 public class CommandService {
 

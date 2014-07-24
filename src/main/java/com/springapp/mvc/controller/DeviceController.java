@@ -30,25 +30,6 @@ public class DeviceController
         return "devices";
     }
 
-    @RequestMapping(value = "/api/devices", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    String listDevicesJson(ModelMap model) throws JSONException
-    {
-        JSONArray deviceArray = new JSONArray();
-        List<Device> deviceList = new ArrayList<Device>();
-        deviceList.add(new Device());
-
-        for (DeviceModel device : deviceService.findAll())
-        {
-            JSONObject deviceJSON = new JSONObject();
-            deviceJSON.put("id", device.getId());
-            deviceJSON.put("name", device.getName());
-            deviceArray.put(deviceJSON);
-        }
-        return deviceArray.toString();
-    }
-
     @RequestMapping(value = "/addDevice", method = RequestMethod.POST)
     public String addDevice(@ModelAttribute("device") Device device, BindingResult result)
     {
